@@ -3,7 +3,7 @@
 链接：https://bj.lianjia.com/ershoufang/co32/
 
 有些数据显示在二级菜单
-link.py     爬取所有房屋的链接(data-housecode) 作为一个数组传给detail.py
+link.py     爬取所有房屋的链接(data-housecode) 作为一个数组传给detail.py ✅
 detail.py   从mongodb调取链接(https://bj.lianjia.com/ershoufang/data-housecode.html)-爬取房屋详情
 
 最后用pandas分析数据
