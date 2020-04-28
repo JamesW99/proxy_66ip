@@ -25,12 +25,13 @@ collection = database['北京二手房']
 
 #延迟&返回要获取的html
 def get_html(url,decode):
-    time.sleep(60)
+    time.sleep(10)
     return requests.get(url, headers=my_head).content.decode(decode)
 
 url = 'https://bj.lianjia.com/ershoufang/'
 def get_detail(page,shui):
     houseid = get_url(page,shui)
+    all_record = []
     for i in houseid:                            #循环获取要访问的网址
         new_url = url+format(i)+'.html'
         #print(new_url)
@@ -57,7 +58,8 @@ def get_detail(page,shui):
 
         }
         print(dic)
-
+        all_record.append(dic)
+    collection.insert_many(all_record)
 
 
 
