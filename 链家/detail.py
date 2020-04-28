@@ -11,11 +11,17 @@ import requests
 from lxml import html
 import time
 from 链家.houseid import get_url
+from pymongo import MongoClient
 
 
 
 my_head = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) '
                          'Chrome/80.0.3987.132 Safari/537.36'}
+
+client = MongoClient()
+database = client['链家']
+collection = database['北京二手房']
+
 
 #延迟&返回要获取的html
 def get_html(url,decode):
@@ -51,6 +57,8 @@ def get_detail(page,shui):
 
         }
         print(dic)
+
+
 
 
 
