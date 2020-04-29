@@ -25,8 +25,8 @@ def get_url(page=10,shui=60):
     for i in range(1, page + 1):
         time.sleep(shui)
         offset = i
-        new_url = url + str(offset) + "co32/"
-        #print(new_url)
+        new_url = url + str(offset)
+        print(new_url)
 
         # 获取网页源码
         page =  get_html(new_url,'UTF-8')
@@ -35,7 +35,7 @@ def get_url(page=10,shui=60):
         # 获取id
         dl = re.findall('data-houseid="(.*?)">', page, re.S)
         houseid.extend(dl)
-    #print(len(houseid))
+    print(houseid)
     return houseid
 
 if __name__=='__main__':

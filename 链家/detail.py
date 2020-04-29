@@ -1,8 +1,7 @@
 '''
-调用houseid.py，获取page*30个houseid✅
-把houseid组成url，通过xpath获取房屋detail✅
+调用houseid.py，获取page*30个houseid
+把houseid组成url，通过xpath获取房屋detail
 存入数据库
-
 '''
 
 
@@ -44,20 +43,29 @@ def get_detail(page,shui):
         price = selector.xpath('//div[5]/div[2]/div[3]/span[1]/text()')
         danwei = selector.xpath('//div[5]/div[2]/div[3]/span[2]/span/text()')
         sumprice = price[0]+danwei[0]
+        name = selector.xpath('//div[5]/div[2]/div[5]/div[1]/a[1]/text()')[0]
+        district = selector.xpath('//div[5]/div[2]/div[5]/div[2]/span[2]/a[1]/text()')[0]
+        location = selector.xpath('//div[5]/div[2]/div[5]/div[2]/span[2]/a[2]/text()')[0]
         gtime = selector.xpath('//div/div/div[2]/div[2]/ul/li[1]/span[2]/text()')[0]
         huxing = selector.xpath('//div/div/div[1]/div[2]/ul/li[1]/text()')[0]
         mianji = selector.xpath('//div/div/div[1]/div[2]/ul/li[3]/text()')[0]
         tihubi = selector.xpath('//div/div/div[1]/div[2]/ul/li[10]/text()')[0]
+        jianjie= selector.xpath('//div[7]/div[1]/div[2]/div/div[2]/div[2]/text()')[0]
+
 
 
 
         dic = {
-            'title' : title,
-            'price' : sumprice,
+            '标题' : title,
+            '总价' : sumprice,
+            '小区': name,
+            '区' : district,
+            '商圈' : location,
             '挂牌时间' : gtime,
             '户型' : huxing,
             '面积' : mianji,
-            '梯户比例' :tihubi
+            '梯户比例' :tihubi,
+            '介绍' : jianjie
         }
         print(dic)
         all_record.append(dic)
