@@ -39,14 +39,17 @@ def get_detail(page,shui):
         code = get_html(new_url,'UTF-8')                        #调用get_html 获取网页源码
         selector = html.fromstring(code)
 
-        title = selector.xpath('//title/text()')
+        #要在结尾加[0]，把list转化成str，不然数据库中显示不出来
+        title = selector.xpath('//title/text()')[0]
         price = selector.xpath('//div[5]/div[2]/div[3]/span[1]/text()')
         danwei = selector.xpath('//div[5]/div[2]/div[3]/span[2]/span/text()')
-        sumprice = price+danwei
-        gtime = selector.xpath('//div/div/div[2]/div[2]/ul/li[1]/span[2]/text()')
-        huxing = selector.xpath('//div/div/div[1]/div[2]/ul/li[1]/text()')
-        mianji = selector.xpath('//div/div/div[1]/div[2]/ul/li[3]/text()')
-        tihubi = selector.xpath('//div/div/div[1]/div[2]/ul/li[10]/text()')
+        sumprice = price[0]+danwei[0]
+        gtime = selector.xpath('//div/div/div[2]/div[2]/ul/li[1]/span[2]/text()')[0]
+        huxing = selector.xpath('//div/div/div[1]/div[2]/ul/li[1]/text()')[0]
+        mianji = selector.xpath('//div/div/div[1]/div[2]/ul/li[3]/text()')[0]
+        tihubi = selector.xpath('//div/div/div[1]/div[2]/ul/li[10]/text()')[0]
+
+
 
         dic = {
             'title' : title,
@@ -55,12 +58,10 @@ def get_detail(page,shui):
             '户型' : huxing,
             '面积' : mianji,
             '梯户比例' :tihubi
-
         }
         print(dic)
         all_record.append(dic)
     collection.insert_many(all_record)
-
 
 
 
