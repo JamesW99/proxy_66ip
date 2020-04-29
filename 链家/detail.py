@@ -73,5 +73,6 @@ def get_detail(page,shui):
 
 
 
+
 if __name__=='__main__':
-    get_detail(1,1)
+    get_detail(100,60)
