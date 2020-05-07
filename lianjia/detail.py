@@ -3,8 +3,7 @@
 把houseid组成url，通过xpath获取房屋detail
 存入数据库
 '''
-
-
+import re
 
 import requests
 from lxml import html
@@ -49,8 +48,20 @@ def get_detail(page,shui):
         huxing = selector.xpath('//div/div/div[1]/div[2]/ul/li[1]/text()')[0]
         mianji = selector.xpath('//div/div/div[1]/div[2]/ul/li[3]/text()')[0]
         tihubi = selector.xpath('//div/div/div[1]/div[2]/ul/li[10]/text()')[0]
+        floor = selector.xpath('//div/div/div[1]/div[2]/ul/li[2]/text()')[0]
+        yongtu = selector.xpath('//div/div/div[2]/div[2]/ul/li[4]/span[2]/text()')[0]
+        redu = selector.xpath('//*[@id="favCount"]/text()')[0]
+        chaoxiang = selector.xpath('//div/div/div[1]/div[2]/ul/li[7]/text()')[0]
+        nuan = selector.xpath('//div/div/div[1]/div[2]/ul/li[11]/text()')[0]
+        dianti = selector.xpath('//div/div/div[1]/div[2]/ul/li[12]/text()')[0]
+        mianjis = re.findall(r"\d+\.?\d*", mianji)  #去掉单位的价格，类型list
+        a = "".join(mianjis)                        #list转换为str
+        b = "".join(price)
+        danjia = float(b) / float(a)                #转换float 相除
         id = selector.xpath('//div[5]/div[2]/div[5]/div[4]/span[2]/text()')[0]
         jianjie= selector.xpath('//div[7]/div[1]/div[2]/div/div[2]/div[2]/text()')[0]
+        jianjie = "".join(jianjie)                  #转化为str
+        jianjie = jianjie.strip()                   #去掉两边空格和换行符
 
 
 
@@ -65,7 +76,14 @@ def get_detail(page,shui):
             '挂牌时间' : gtime,
             '户型' : huxing,
             '面积' : mianji,
-            '梯户比例' :tihubi,
+            '梯户比例' : tihubi,
+            '楼层' : floor,
+            '用途' : yongtu,
+            '关注人数' : redu,
+            '朝向' : chaoxiang,
+            '供暖方式' : nuan,
+            '电梯' : dianti,
+            '单价' : danjia,
             '介绍' : jianjie,
             'ID' : id
 
