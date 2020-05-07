@@ -32,4 +32,4 @@ def crawl_xici_proxy(pagenumber):
 
 
 if __name__ == '__main__':
-    crawl_xici_proxy(3)
+    crawl_xici_proxy(1)
