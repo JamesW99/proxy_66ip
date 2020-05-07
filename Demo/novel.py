@@ -5,7 +5,7 @@ from lxml import html
 url="https://www.kanunu8.com/book3/6879/"
 cont = requests.get(url).content.decode("GBK")
 
-new_urls = re.findall('href="([^<]*?)">第',cont, re.S)
+new_urls = re.findall('href="([^<]*?)">第',cont, re.S)   #获取每章
 
 chapter = 1
 for item in new_urls:
