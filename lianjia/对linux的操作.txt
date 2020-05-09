@@ -14,3 +14,5 @@ ctrl + a    d           #run in background
 screen -r test1         #look test1
 
 
+备份数据库
+mongoexport -d '链家' -c '北京二手房' -o /Users/james/Downloads/backup/bjesf.json --type json
