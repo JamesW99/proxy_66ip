@@ -3,7 +3,7 @@
 yum install checkpolicy
 
 对文件的修改
-from lianjia.houseid import get_url    =>    from houseid import get_url
+    from lianjia.houseid import get_url    =>    from houseid import get_url
 
 screen -S test1
 python3 /root/lianjia/detail.py
@@ -14,5 +14,5 @@ ctrl + a    d           #run in background
 screen -r test1         #look test1
 
 
-备份数据库
-mongoexport -d '链家' -c '北京二手房' -o /Users/james/Downloads/backup/bjesf.json --type json
+#备份数据库
+    mongoexport -d '链家' -c '北京二手房' -o /Users/james/Downloads/backup/bjesf.json --type json
