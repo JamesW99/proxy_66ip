@@ -10,5 +10,3 @@ to do list：
   proxy_pool 评分机制待升级
 
   缺少pandas数据分析
-
-  部署到服务器
