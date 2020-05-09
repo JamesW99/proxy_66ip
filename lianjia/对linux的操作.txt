@@ -1,16 +1,16 @@
 
+安装 mongodb   https://juejin.im/post/5cbe73f86fb9a0320b40d687
+yum install checkpolicy
 
-#https://computingforgeeks.com/how-to-install-python-on-3-on-centos/
+对文件的修改
+from lianjia.houseid import get_url    =>    from houseid import get_url
+
+screen -S test1
+python3 /root/lianjia/detail.py
+
+安装提示缺少的包
+
+ctrl + a    d           #run in background
+screen -r test1         #look test1
 
 
-sudo yum -y groupinstall "Development Tools"
-
-sudo yum -y install openssl-devel bzip2-devel libffi-devel
-
-sudo yum install epel-release
-
-sudo yum install python34
-
-curl -O https://bootstrap.pypa.io/get-pip.py
-
-sudo /usr/bin/python3.8 get-pip.py
