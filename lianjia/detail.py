@@ -1,4 +1,3 @@
-
 '''
 调用houseid.py，获取page*30个houseid
 把houseid组成url，通过xpath获取房屋detail
@@ -20,8 +19,8 @@ client = MongoClient()
 database = client['链家']
 collection = database['北京二手房']
 
-shui = 10
-houseid = get_url(1, shui)           # 调用house id，返回所有要获取的id
+shui = 2
+houseid = get_url(100,shui)           # 调用house id，返回所有要获取的id
 
 
 # 这个函数只能调用一次！！！
@@ -44,7 +43,7 @@ def check_none(xp, selector):
     if selector.xpath(xp):
         #要在结尾加[0]，把list转化成str，不然数据库中显示不出来
         neirong = selector.xpath(xp)[0]
-    print(neirong)
+    #print(neirong)
     return neirong
 
 
@@ -110,6 +109,7 @@ def get_detail():
             'ID' : id
 
         }
+        print(dic)
         all_record.append(dic)
     collection.insert_many(all_record)
 
