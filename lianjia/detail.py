@@ -58,11 +58,13 @@ def get_detail(page,shui):
         a = "".join(mianjis)                        #list转换为str
         b = "".join(price)
         danjia = float(b) / float(a)                #转换float 相除
+        jianjie = None
+        if selector.xpath('//div[7]/div[1]/div[2]/div/div[2]/div[2]/text()'):
+            jianjie2 = selector.xpath('//div[7]/div[1]/div[2]/div/div[2]/div[2]/text()')[0]
+            jianjie1 = "".join(jianjie2)  # 转化为str
+            jianjie = jianjie1.strip()  # 去掉两边空格和换行符
+        print(jianjie)
         id = selector.xpath('//div[5]/div[2]/div[5]/div[4]/span[2]/text()')[0]
-        jianjie= selector.xpath('//div[7]/div[1]/div[2]/div/div[2]/div[2]/text()')[0]
-        jianjie = "".join(jianjie)                  #转化为str
-        jianjie = jianjie.strip()                   #去掉两边空格和换行符
-
 
 
 
@@ -96,4 +98,4 @@ def get_detail(page,shui):
 
 
 if __name__=='__main__':
-    get_detail(1,5)
+    get_detail(10,15)
