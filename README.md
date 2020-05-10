@@ -5,8 +5,6 @@ bpc数据的清洗和采集的所有代码
 
 to do list：
 
-  proxy_pool 不会循环
+  proxy_pool 循环不会停
 
   proxy_pool 评分机制待升级
-
-  缺少pandas数据分析
