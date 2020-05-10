@@ -13,7 +13,7 @@ print(df['age'].max())
 
 
 titanic = pd.read_csv('/Users/james/Downloads/titanic.csv')
-print(titanic.head(10))
+#print(titanic.head(10))
 
 
 dates = pd.date_range('20130101', periods=6)
@@ -23,7 +23,7 @@ dates = pd.date_range('20130101', periods=6)
 #columns：列名
 df = pd.DataFrame(np.random.randn(6,4),index=dates, columns=list('ABCD'))
 print(df)
-print(df.T)#矩阵转制，行列对掉
+#print(df.T)#矩阵转制，行列对掉
 
 
 #axis: 0控制index， 1控制columns
@@ -59,6 +59,10 @@ titanic.iloc[9:24,2:5]
 #选择Age大于35的
 titanic[titanic['Age']>35]
 #选择Age大于35的Name
-titanic.loc[titanic['Age']>35],'Name'
+aa = titanic.loc[titanic['Age']>35],'Name'
 #选择Age大于35的Name和Pclass
 titanic[titanic['Age']>35][['Pclass','Name']]
+
+
+print(aa)
+
