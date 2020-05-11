@@ -5,7 +5,6 @@
 获取一个代理：http://127.0.0.1:5000/random
 """
 
-'''检测程序不会循环'''
 
 # 引入一个多线程的库
 from multiprocessing import Process
@@ -17,21 +16,21 @@ from proxy_pool.web_proxy import app
 from time import sleep
 
 # 要爬取的页数
-pagenumber = 1
+pagenumber = 30
 
 # 开关
-CRAWL_MODE = False
+CRAWL_MODE = True
 TEST_MODE = True
 API_MODE = True
 
 # 延迟时间
-CRAWL_CYCLE = 60
-TEST_CYCLE = 100
+CRAWL_CYCLE = 86400
+TEST_CYCLE = 300
 
 
 # 调用xici.py 爬取proxy
 def schedule_crawl(CYCLE=CRAWL_CYCLE):
-    while True:
+    while True:                             # while 一直循环
         print('爬取ing')
         crawl_xici_proxy(pagenumber)
         sleep(CYCLE)
@@ -40,9 +39,8 @@ def schedule_crawl(CYCLE=CRAWL_CYCLE):
 # 调用proxy_grade.py 检测代理可用性
 def scheduce_grand(CYCLE=TEST_CYCLE):
     while True:
-        print('检测ing')
         test_proxy_in_redis()
-        sleep(CYCLE)
+        #sleep(CYCLE)
 
 
 # 调用web_proxy 展示代理
@@ -57,7 +55,7 @@ def schedue_work():
         crawler_process.start()
 
     if TEST_MODE:
-        grade_process = Process(target=test_proxy_in_redis)
+        grade_process = Process(target=scheduce_grand)
         grade_process.start()
 
     if API_MODE:
@@ -71,7 +69,4 @@ def repeat_fun(times, f, *args):
 
 # 限制只有当前页面才输出
 if __name__ == '__main__':
-    #schedue_work()
-    repeat_fun(2, scheduce_grand(), 1)              #重复调用检测模块
-
-    #schedue_work()
+    schedue_work()

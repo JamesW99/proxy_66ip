@@ -4,15 +4,14 @@
 import requests
 from lxml import html
 from proxy_pool.db import RedisClient
-import time
-
+from time import sleep
 
 my_head = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) '
                          'Chrome/80.0.3987.132 Safari/537.36'}
 
 #延迟&返回要获取的html
 def get_html(url,decode):
-    time.sleep(2)
+    sleep(15)
     return requests.get(url, headers=my_head).content.decode(decode)
 
 #

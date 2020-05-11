@@ -4,9 +4,9 @@
 import redis
 from random import choice
 
-MAX_SCORE = 100
+MAX_SCORE = 100000
 MIN_SCORE = 0
-INITIAL_SCORE = 10
+INITIAL_SCORE = 3
 REDIS_HOST = 'localhost'
 
 REDIS_PORT = 6379
@@ -66,6 +66,13 @@ class RedisClient(object):
             print('代理', proxy, '当前分数', score, '移除')
             return self.db.zrem(REDIS_KEY, proxy)
 
+    def da100(self,proxy):
+        score = self.db.zscore(REDIS_KEY, proxy)
+        print('代理', proxy, '不可用，但之前可用过，设置为99')
+        return self.db.zadd(REDIS_KEY, {proxy: 99})
+
+
+
     def exist(self, proxy):
         """
         判断该代理是否存在
@@ -80,8 +87,18 @@ class RedisClient(object):
         :param proxy: 代理
         :return:设置结束
         """
-        print('代理', proxy, '可用，设置为', MAX_SCORE)
-        return self.db.zadd(REDIS_KEY, {proxy:MAX_SCORE})
+        print('代理', proxy, '可用，设置为100')
+        return self.db.zadd(REDIS_KEY, {proxy:100})
+
+    def over_max(self, proxy):
+        """
+        将代理设置为100分
+        :param proxy: 代理
+        :return:设置结束
+        """
+        score = self.db.zscore(REDIS_KEY, proxy)
+        print('代理', proxy, '不是第一次可用，分数', score+1)
+        return self.db.zincrby(REDIS_KEY, 1, proxy)
 
     def count(self):
         """
