@@ -1,8 +1,9 @@
 # web_crawler
 bpc数据的清洗和采集的所有代码
 
-正在写期末作业ing
+算是一个完成的爬虫了吧
 
-to do list：
+需要引入各种需要的库，建议clon到pycharm
 
-        proxy_pool 评分机制待升级
+使用方法，运行lianjia下的detail.py
+
