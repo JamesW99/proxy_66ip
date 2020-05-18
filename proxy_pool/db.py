@@ -6,7 +6,7 @@ from random import choice
 
 MAX_SCORE = 100000
 MIN_SCORE = 0
-INITIAL_SCORE = 3
+INITIAL_SCORE = 1
 REDIS_HOST = 'localhost'
 
 REDIS_PORT = 6379

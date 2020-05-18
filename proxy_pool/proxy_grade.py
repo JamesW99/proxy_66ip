@@ -27,6 +27,7 @@ def is_bad_proxy(proxy, default_server="http://httpbin.org/get"):
                 redis.over_max(proxy)               #多次可用，设置为score+1
         else:                                               #返回404之类的
             print("{}代理不可用".format(proxy))
+            score = r.zscore(REDIS_KEY, proxy)
             if score>99:
                 redis.da100(proxy)                  #不可用，之前可用——设置为99
     except requests.exceptions.RequestException as e:       #无响应

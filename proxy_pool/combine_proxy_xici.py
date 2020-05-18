@@ -19,7 +19,7 @@ from time import sleep
 pagenumber = 30
 
 # 开关
-CRAWL_MODE = True
+CRAWL_MODE = False
 TEST_MODE = True
 API_MODE = True
 
